@@ -1,54 +1,34 @@
 import sys
-#cat input.txt | python3 ex1.py
-
-def first_string(string):
-    i = 0
-    first = []
-    while (string[i] != '\n'):
-        first.append(string[i])
-        i += 1
-    return first
-
-def second_string(string):
-    i = 0
-    second = []
-    while (string[i] != '\n'):
-        i += 1
-    i += 1
-    while (i < len(string)):
-        second.append(string[i])
-        i += 1
-    return second
 
 def calcul(string1, string2):
-    f1 = string1[4]
-    p1 = string1[6]
-    r1 = string1[8]
+    f1 = int(string1[1])
+    p1 = int(string1[2])
+    r1 = int(string1[3])
+    result1 = string1[0]
 
-    f2 = string2[4]
-    p2 = string2[6]
-    r2 = string2[8]
-    if r1 >= 1 and r1 <= 20 and p1 >= 1 and p1 <= 20 and f1 >= 1 and f1 <= 20:
-        if r2 >= 1 and r2 <= 20 and p2 >= 1 and p2 <= 20 and f2 >= 1 and f2 <= 20:
+    f2 = int(string2[1])
+    p2 = int(string2[2])
+    r2 = int(string2[3])
+    result2 = string2[0]
+    
+    if 1 <= r1 <= 20 and 1 <= p1 <= 20 and 1 <= f1 <= 20:
+        if 1 <= r2 <= 20 and 1 <= p2 <= 20 and 1 <= f2 <= 20:
             res1 = (r1 + p1) * f1
             res2 = (r2 + p2) * f2
         else:
             return 84
     else:
         return 84
-    if (res1 > res2):
-        return res2
-    if (res2 > res1):
-        return res1
 
+    if res1 > res2:
+        return result2
+    elif res2 > res1:
+        return result1
+    else:
+        return 0
 
 if __name__ == "__main__":
-    content = sys.stdin.read()
-    string1 = first_string(content)
-    string2 = second_string(content)
-    print(content)
-    print(string1)
-    print("---------------------------------------------")
-    print(string2)
-    print("---------------------------------------------")
+    content = sys.stdin.read().splitlines()
+    string1 = content[0].split()
+    string2 = content[1].split()
     print(calcul(string1, string2))
